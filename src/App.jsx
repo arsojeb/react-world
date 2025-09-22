@@ -1,14 +1,19 @@
+import { Suspense } from 'react';
+import './App.css';
+import Countrys from './countrys';
 
-import './App.css'
+// Keep your original structure: promise assigned to variable
+const countryPromis = fetch("https://openapi.programming-hero.com/api/all")
+  .then(res => res.json());
 
 function App() {
- 
-
   return (
     <>
-      <h1>React on The Go</h1>
+      <Suspense fallback={<p>Nadir Vai Loading....</p>}>
+        <Countrys countryPromis={countryPromis}></Countrys>
+      </Suspense>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
