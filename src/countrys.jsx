@@ -7,7 +7,9 @@ const Countrys = ({ countryPromis }) => {
     const [visitedCountries, setvisitedCountries] = useState([]);
 
     const handelVisitedCountries = (country) => {
-        console.log('handel visited countries',country)
+        console.log('handel visited countries',country);
+        const newVisitedCountries = [...visitedCountries, country];
+        setvisitedCountries(newVisitedCountries);
     }
 
     const countrisData = use(countryPromis);       
@@ -19,7 +21,14 @@ const Countrys = ({ countryPromis }) => {
         <div>
             
             <h1>In The Country: {countries.length}</h1>
-            <h3>Total Country Visited:</h3>
+            <h3>Total Country Visited: {visitedCountries.length}</h3>
+            <ol>
+                {
+                    visitedCountries.map(country => <li
+                    key={country.cca3.cca3}
+                    >{country.name.common}</li>)
+                }
+            </ol>
             <div className='countries'>{countries.map(country => (
                 <Country key={country.cca3.cca3} country={country} handelVisitedCountries ={handelVisitedCountries}></Country>
             ))}</div>
